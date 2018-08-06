@@ -6,9 +6,9 @@ Created on Wed Apr 18 14:01:19 2018
 """
 import time as time 
 from perseuspy import pd
-from tkinter import Tk
-from tkinter import filedialog
+from utilities import openfile
 import numpy as np
+
 def janspivot(a,reg):
     if reg:
         table = pd.pivot_table(a, values = 'Intensity',\
@@ -40,15 +40,15 @@ def MSFrgPivot(a):
     return pivot
 
 def comparePivot(fileendingdeppep):
-    a = openfile()
-    b = openfile()
+    deppep1 = openfile()
+    deppep2 = openfile()
     x = 3
     if fileendingdeppep:
-        piva = janspivot(a,False)
-        pivb = janspivot(b,False)
+        piva = janspivot(deppep1,False)
+        pivb = janspivot(deppep2,False)
     else:
-        piva = janspivot(a,False)
-        pivb = MSFrgPivot(b)
+        piva = janspivot(deppep1,False)
+        pivb = MSFrgPivot(deppep2)
         x - 1
     countsa = []
     countsb = []
@@ -74,21 +74,6 @@ def comparePivot(fileendingdeppep):
     ax.set_xlabel('Raw file',fontsize = 15)
     ax.set_ylabel('Percentage share',fontsize = 15)
     return countsall
-
-def openfile():
-    root = Tk()
-    root.withdraw()
-    a = filedialog.askopenfilename(initialdir = "D:\Thomas\PhytonSCripts\MQOutput" \
-           ,title = "Choose a MQ DP_peptides.deppep file or .tsv or .txt to plot",\
-           filetypes = (("deppep files","*.deppep"),("tsv files",".tsv"),\
-                        ("MQ Output",".txt"),("all files","*.*")))
-   
-    table = pd.read_table(a,low_memory=False)
-    if ".deppep" in a:
-        table = table.drop(0).reset_index(drop = True)
-    if 'Intensity' in table.columns:
-        table['Intensity'] = table['Intensity'].astype(float)
-    return table
 
 if __name__ == "__main__":
     start_time = time.time();

@@ -10,8 +10,8 @@ Created on Wed Mar 21 16:07:07 2018
 import time as time 
 from perseuspy import pd
 import matplotlib.pyplot as plt
-from janspivot import janspivot, openfile
-# table = Parallel(n_jobs = -2)(extractdupls(dupl,x,table) for x in range(len(dupl)))
+from janspivot import janspivot
+from utilities import openfile
 
 def recalculateAAProbabilities(prob_threshold,showplots,clusters):
     a = openfile()

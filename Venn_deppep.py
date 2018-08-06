@@ -5,7 +5,7 @@ Created on Wed May  2 14:09:24 2018
 @author: heinzinger
 """
 
-from janspivot import openfile
+from utilities import openfile
 import matplotlib.pyplot as plt
 
 def id_venn(file):
@@ -23,5 +23,6 @@ def id_venn(file):
     plt.show()
     
 if __name__ == "__main__":  
-    
+    # open a MQ allpeptides file to see how much are identified spectra,
+    # identified by dependent Peptides and unidentified Peptides
     id_venn(openfile())

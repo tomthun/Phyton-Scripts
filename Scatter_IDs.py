@@ -4,7 +4,7 @@ Created on Wed May 23 13:39:26 2018
 
 @author: heinzinger
 """
-from janspivot import openfile
+from utilities import openfile
 import time as time 
 import matplotlib.pyplot as plt
 import numpy as np

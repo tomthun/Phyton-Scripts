@@ -4,9 +4,11 @@ Created on Thu Apr 19 10:31:43 2018
 
 @author: heinzinger
 """
-from janspivot import openfile
+from utilities import openfile
 from perseuspy import pd
 
+# plot different dependent Peptide against each other to see their abundancy 
+# of found dependent peptides 
 def pltcountperRaw():
     x = int(input('How many files do you want to plot together? '))
   
@@ -15,10 +17,13 @@ def pltcountperRaw():
     unmod = pd.DataFrame(withoutunmodified['Raw file'].value_counts())
     values = pd.DataFrame(a['Raw file'].value_counts())  
     
-    b = openfile()
-    b['Raw file'] = b['Spectrum'].apply(lambda df: df.split('.')[0])
-    b = b[b['Observed Modifications']!='Unknown']
-    values['MSFragger identifications'] = b['Raw file'].value_counts().values
+# =============================================================================
+#     #just for MSFragger files
+#     b = openfile()
+#     b['Raw file'] = b['Spectrum'].apply(lambda df: df.split('.')[0])
+#     b = b[b['Observed Modifications']!='Unknown']
+#     values['MSFragger identifications'] = b['Raw file'].value_counts().values
+# =============================================================================
     for y in range(x-1):
         a = openfile()
         withoutunmodified = a[a['DP Modification'] == 'Unmodified']
